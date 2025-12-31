@@ -1,150 +1,82 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const HomePageAppBar({super.key});
+class NavigationCard extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final Color accentColor;
+  final VoidCallback onTap;
 
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  const NavigationCard({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.accentColor,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return AppBar(
-      backgroundColor: colorScheme.surface,
-      surfaceTintColor: Colors.transparent,
-      elevation: 0,
-      title: Row(
-        mainAxisSize: MainAxisSize.min, // Prevents Row from taking full width
-        children: [
-          // Smaller circle logo
-          Container(
-            width: 32,  // Reduced from 40
-            height: 32, // Reduced from 40
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: colorScheme.primary,
-            ),
-            child: Center(
-              child: Text(
-                'V',
-                style: TextStyle(
-                  color: colorScheme.onPrimary,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16, // Reduced from 20
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 8), // Reduced from 12
-          Text(
-            'VBC-WS',
-            style: TextStyle(
-              color: colorScheme.onSurface,
-              fontWeight: FontWeight.w600,
-              fontSize: 18, // Explicit size for consistency
-            ),
-          ),
-        ],
-      ),
-      actions: [
-        _buildIconButton(
-          context,
-          'assets/icons/icon1.svg',
-          'Menu',
-          () => _openModalPage(context, 'Menu', colorScheme.primaryContainer),
-        ),
-        _buildIconButton(
-          context,
-          'assets/icons/icon2.svg',
-          'Settings',
-          () => _openModalPage(context, 'Settings', colorScheme.secondaryContainer),
-        ),
-        _buildIconButton(
-          context,
-          'assets/icons/icon3.svg',
-          'Notifications',
-          () => _openModalPage(context, 'Notifications', colorScheme.tertiaryContainer),
-        ),
-        _buildIconButton(
-          context,
-          'assets/icons/icon4.svg',
-          'Profile',
-          () => _openModalPage(context, 'Profile', colorScheme.surfaceContainerHighest),
-        ),
-        SizedBox(width: 4), // Reduced from 8
-      ],
-    );
-  }
-
-  Widget _buildIconButton(
-    BuildContext context,
-    String assetPath,
-    String label,
-    VoidCallback onTap,
-  ) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    return IconButton(
-      icon: SvgPicture.asset(
-        assetPath,
-        width: 22, // Slightly reduced from 24
-        height: 22,
-        colorFilter: ColorFilter.mode(
-          colorScheme.onSurface,
-          BlendMode.srcIn,
-        ),
-      ),
-      onPressed: onTap,
-      tooltip: label,
-      padding: EdgeInsets.all(8), // Tighter padding
-      constraints: BoxConstraints(), // Remove default constraints
-    );
-  }
-
-  void _openModalPage(BuildContext context, String title, Color backgroundColor) {
-    final colorScheme = Theme.of(context).colorScheme;
-
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        height: MediaQuery.of(context).size.height,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 140,
         decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+          borderRadius: BorderRadius.circular(16),
+          image: DecorationImage(
+            image: AssetImage('assets/images/placeholder.png'),
+            fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.5),
+              BlendMode.darken,
+            ),
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.15),
+              blurRadius: 8,
+              offset: Offset(0, 4),
+            ),
+          ],
         ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            backgroundColor: backgroundColor,
-            surfaceTintColor: Colors.transparent,
-            elevation: 0,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
-            title: Text(
-              title,
-              style: TextStyle(color: colorScheme.onSurface),
-            ),
-          ),
-          body: Container(
-            width: double.infinity,
-            color: backgroundColor,
-            child: Center(
-              child: Text(
-                'Content coming soon',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: colorScheme.onSurface,
+        // Use Padding to ensure content doesn't overflow.
+        child: Padding(
+          padding: EdgeInsets.all(12), // Add padding around content.
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min, // Use minimum vertical space.
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Icon with constrained size.
+                Icon(
+                  icon,
+                  size: 40, // Reduced from 48 to fit better.
+                  color: Colors.white,
                 ),
-              ),
+                SizedBox(height: 8), // Reduced from 12 for tighter spacing.
+                
+                // Flexible text that wraps and ellipsizes if needed.
+                Flexible(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 20, // Reduced from 22 for better fit.
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      height: 1.2, // Line height multiplier for compact text.
+                      shadows: [
+                        Shadow(
+                          color: Colors.black.withOpacity(0.8),
+                          blurRadius: 4,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 2, // Allow text to wrap to 2 lines.
+                    overflow: TextOverflow.ellipsis, // Add ellipsis if still too long.
+                  ),
+                ),
+              ],
             ),
           ),
         ),

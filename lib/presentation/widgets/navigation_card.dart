@@ -21,7 +21,7 @@ class NavigationCard extends StatelessWidget {
       child: Container(
         height: 140,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(4),
           image: DecorationImage(
             image: AssetImage('assets/images/placeholder.png'),
             fit: BoxFit.cover,
@@ -38,33 +38,46 @@ class NavigationCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                size: 48,
-                color: Colors.white,
-              ),
-              SizedBox(height: 12),
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
+        // Use Padding to ensure content doesn't overflow.
+        child: Padding(
+          padding: EdgeInsets.all(12), // Add padding around content.
+          child: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min, // Use minimum vertical space.
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Icon with constrained size.
+                Icon(
+                  icon,
+                  size: 40, // Reduced from 48 to fit better.
                   color: Colors.white,
-                  shadows: [
-                    Shadow(
-                      color: Colors.black.withOpacity(0.8),
-                      blurRadius: 4,
-                      offset: Offset(0, 2),
-                    ),
-                  ],
                 ),
-                textAlign: TextAlign.center,
-              ),
-            ],
+                SizedBox(height: 8), // Reduced from 12 for tighter spacing.
+                
+                // Flexible text that wraps and ellipsizes if needed.
+                Flexible(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 20, // Reduced from 22 for better fit.
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      height: 1.2, // Line height multiplier for compact text.
+                      shadows: [
+                        Shadow(
+                          color: Colors.black.withOpacity(0.8),
+                          blurRadius: 4,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 2, // Allow text to wrap to 2 lines.
+                    overflow: TextOverflow.ellipsis, // Add ellipsis if still too long.
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
