@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomBottomNavBar extends StatelessWidget {
+class BottomNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
 
-  const CustomBottomNavBar({
+  const BottomNavBar({
     super.key,
     required this.currentIndex,
     required this.onTap,
@@ -31,19 +31,19 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.calendar_today),
-          label: 'Events',
+          label: 'Lịch',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.play_circle_outline),
-          label: 'Sermons',
+          label: 'Bài Giảng',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.volunteer_activism),
-          label: 'Prayer',
+          label: 'Cầu Nguyện',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.card_giftcard),
-          label: 'Giving',
+          label: 'Dâng',
         ),
       ],
     );

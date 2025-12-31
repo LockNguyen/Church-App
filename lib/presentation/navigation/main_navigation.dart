@@ -4,7 +4,7 @@ import '../pages/events_page.dart';
 import '../pages/sermon_page.dart';
 import '../pages/prayer_page.dart';
 import '../pages/giving_page.dart';
-import '../widgets/custom_bottom_nav_bar.dart';
+import '../widgets/all_pages/bottom_navbar.dart';
 
 /// Main navigation controller that manages page transitions with animations.
 /// 
@@ -35,7 +35,7 @@ class _MainNavigationState extends State<MainNavigation> {
     // navigation when cards are tapped.
     _pages = [
       HomePage(onNavigate: _onNavigate),
-      EventsPage(),
+      EventsPage(onNavigate: _onNavigate),
       SermonPage(),
       PrayerPage(),
       GivingPage(),
@@ -106,7 +106,7 @@ class _MainNavigationState extends State<MainNavigation> {
       
       // Bottom nav bar stays outside AnimatedSwitcher so it never animates.
       // It remains stationary with built-in Material 3 tap animations intact.
-      bottomNavigationBar: CustomBottomNavBar(
+      bottomNavigationBar: BottomNavBar(
         currentIndex: _currentIndex, // Highlight correct icon.
         onTap: _onNavigate,          // Handle navigation taps.
       ),
