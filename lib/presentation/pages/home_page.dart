@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
                   ),
                   SizedBox(height: 24),
                   NavigationCard(
-                    title: 'Xem Lại Bài Giảng',
+                    title: 'Môn Đồ Hóa',
                     image: 'images/preaching.jpg',
                     accentColor: colorScheme.secondary,
                     onTap: () => onNavigate(2),
@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
                   ),
                   SizedBox(height: 24),
                   NavigationCard(
-                    title: 'Tiền Dâng',
+                    title: 'Liên Hệ',
                     image: 'images/giving.jpg',
                     accentColor: colorScheme.primaryContainer,
                     onTap: () => onNavigate(4),
@@ -65,9 +65,10 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // AppBar built as a regular widget (not PreferredSizeWidget)
+  /// Responsive AppBar that adapts to screen size.
   Widget _buildAppBar(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
       height: kToolbarHeight,
@@ -104,25 +105,57 @@ class HomePage extends StatelessWidget {
             ),
           ),
           SizedBox(width: 12),
-          Text(
+          // App name - flexible to shrink if needed
+          Flexible(
+            child: Text(
             'VBC-WS',
             style: TextStyle(
               color: colorScheme.onSurface,
               fontWeight: FontWeight.w600,
               fontSize: 20,
+              ),
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           Spacer(),
-          // Four icon buttons
-          _buildIconButton(context, 'assets/icons/placeholder.svg', 'Menu'),
-          _buildIconButton(context, 'assets/icons/placeholder.svg', 'Settings'),
-          _buildIconButton(context, 'assets/icons/placeholder.svg', 'Notifications'),
-          _buildIconButton(context, 'assets/icons/placeholder.svg', 'Profile'),
+          // Responsive icon display
+          if (screenWidth >= 600)
+            // Desktop: Show all 4 icons
+            ..._buildAllIconButtons(context)
+          else if (screenWidth >= 400)
+            // Tablet: Show 2 icons + menu
+            ...[
+              _buildIconButton(
+                context,
+                'assets/icons/placeholder.svg',
+                'Notifications',
+              ),
+              _buildIconButton(
+                context,
+                'assets/icons/placeholder.svg',
+                'Profile',
+              ),
+              _buildMoreMenu(context),
+            ]
+          else
+            // Mobile: Show only menu button
+            _buildMoreMenu(context),
         ],
       ),
     );
   }
 
+  /// Build all four icon buttons (for wide screens).
+  List<Widget> _buildAllIconButtons(BuildContext context) {
+    return [
+      _buildIconButton(context, 'assets/icons/placeholder.svg', 'Menu'),
+      _buildIconButton(context, 'assets/icons/placeholder.svg', 'Settings'),
+      _buildIconButton(context, 'assets/icons/placeholder.svg', 'Notifications'),
+      _buildIconButton(context, 'assets/icons/placeholder.svg', 'Profile'),
+    ];
+  }
+
+  /// Build a single icon button.
   Widget _buildIconButton(BuildContext context, String assetPath, String label) {
     final colorScheme = Theme.of(context).colorScheme;
 
@@ -138,6 +171,61 @@ class HomePage extends StatelessWidget {
       ),
       onPressed: () => _openModalPage(context, label),
       tooltip: label,
+    );
+  }
+
+  /// Build overflow menu for small screens.
+  Widget _buildMoreMenu(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
+    return PopupMenuButton<String>(
+      icon: Icon(
+        Icons.more_vert,
+        color: colorScheme.onSurface,
+      ),
+      onSelected: (value) => _openModalPage(context, value),
+      itemBuilder: (context) => [
+        PopupMenuItem(
+          value: 'Menu',
+          child: Row(
+            children: [
+              Icon(Icons.menu, color: colorScheme.onSurface),
+              SizedBox(width: 12),
+              Text('Menu'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: 'Settings',
+          child: Row(
+            children: [
+              Icon(Icons.settings, color: colorScheme.onSurface),
+              SizedBox(width: 12),
+              Text('Settings'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: 'Notifications',
+          child: Row(
+            children: [
+              Icon(Icons.notifications, color: colorScheme.onSurface),
+              SizedBox(width: 12),
+              Text('Notifications'),
+            ],
+          ),
+        ),
+        PopupMenuItem(
+          value: 'Profile',
+          child: Row(
+            children: [
+              Icon(Icons.person, color: colorScheme.onSurface),
+              SizedBox(width: 12),
+              Text('Profile'),
+            ],
+          ),
+        ),
+      ],
     );
   }
 

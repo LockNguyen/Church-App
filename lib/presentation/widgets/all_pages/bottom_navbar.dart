@@ -34,8 +34,8 @@ class BottomNavBar extends StatelessWidget {
           label: 'Lịch',
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.play_circle_outline),
-          label: 'Bài Giảng',
+          icon: Icon(Icons.grass),
+          label: 'Môn Đồ Hóa',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.volunteer_activism),
@@ -43,7 +43,7 @@ class BottomNavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.card_giftcard),
-          label: 'Dâng',
+          label: 'Liên Hệ',
         ),
       ],
     );

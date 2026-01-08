@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../pages/home_page.dart';
 import '../pages/events_page.dart';
+import '../pages/discipleship_page.dart';
 import '../pages/sermon_page.dart';
 import '../pages/prayer_page.dart';
 import '../pages/giving_page.dart';
@@ -36,6 +37,7 @@ class _MainNavigationState extends State<MainNavigation> {
     _pages = [
       HomePage(onNavigate: _onNavigate),
       EventsPage(onNavigate: _onNavigate),
+      DiscipleshipPage(onNavigate: _onNavigate),
       SermonPage(),
       PrayerPage(),
       GivingPage(),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../data/repositories/event_repository_impl.dart';
+import '../../domain/entities/event_entity.dart';
 import '../widgets/events_page/events_page_bottom_modal.dart';
+import '../widgets/smart_image.dart';
 
-class EventsPage extends StatelessWidget {
-  // Navigation callback to communicate with MainNavigation
+class EventsPage extends StatefulWidget {
   final Function(int) onNavigate;
 
   const EventsPage({
@@ -11,50 +14,30 @@ class EventsPage extends StatelessWidget {
   });
 
   @override
+  State<EventsPage> createState() => _EventsPageState();
+}
+
+class _EventsPageState extends State<EventsPage> {
+  late final EventRepositoryImpl _repository;
+
+  @override
+  void initState() {
+    super.initState();
+    _repository = EventRepositoryImpl(FirebaseFirestore.instance);
+  }
+
+  @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
 
-    // Fake data for now – later you can replace this with real models.
-    final events = [
-      EventItem(
-        title: 'Học Kinh Thánh Môn Đồ Hóa',
-        heroImage: 'assets/images/praying.jpg',
-        thumbnailImage: 'assets/images/praying.jpg',
-        notes: '\nLớp 1:\n- Thời Gian: T6, 2 thg 1 • 6:00 – 7:00pm\n- Địa Điểm: 4680 Willow Ct, Winston Salem, NC 27103\n- Liên Hệ: MS Nghiêm\n\nLớp 2:\n- Thời Gian: T6, 2 thg 1 • 8:00 – 9:00pm\n- Địa Điểm: 1111 Hello St, Winston Salem, NC 27103\n- Liên Hệ: MS Khuê',
-      ),
-      EventItem(
-        title: 'Tập Hát',
-        dateDisplay: 'T7, 3 thg 1 • 8:00 – 9:00pm',
-        heroImage: 'assets/images/youth_worship_practice.jpg', // replace with your banner image
-        thumbnailImage: 'assets/images/youth_worship_practice.jpg',
-        location: '134 S Peace Haven Rd, Winston Salem, NC 27104',
-      ),
-      EventItem(
-        title: 'Lớp Môn Đồ Hóa',
-        dateDisplay: 'CN, 4 thg 1 • 9:15 – 10:15am',
-        heroImage: 'assets/images/khue_and_youth.jpg', // replace with your banner image
-        thumbnailImage: 'assets/images/khue_and_youth.jpg',
-        location: '134 S Peace Haven Rd, Winston Salem, NC 27104',
-      ),
-      EventItem(
-        title: 'Thờ Phượng',
-        dateDisplay: 'CN, 4 thg 1 • 10:30 – 11:30am',
-        heroImage: 'assets/images/meredith_na_duet.jpg',
-        thumbnailImage: 'assets/images/meredith_na_duet.jpg',
-        location: '134 S Peace Haven Rd, Winston Salem, NC 27104',
-      )
-    ];
-
     return Scaffold(
-      // This AppBar is only for the Events tab; MainNavigation does not add an AppBar.
       appBar: AppBar(
         backgroundColor: colorScheme.surface,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: colorScheme.onSurface),
-          // Go back to Home tab (index 0) in your MainNavigation.
-          onPressed: () => onNavigate(0),
+          onPressed: () => widget.onNavigate(0),
         ),
         centerTitle: true,
         title: Text(
@@ -76,54 +59,131 @@ class EventsPage extends StatelessWidget {
         ],
       ),
       body: Container(
-        color: colorScheme.surface, // solid background like the screenshot
-        child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-          children: [
-            // Top banner image
-            ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Image.asset(
-                  'assets/images/church.png',
-                  fit: BoxFit.cover,
+        color: colorScheme.surface,
+        child: StreamBuilder<List<EventEntity>>(
+          stream: _repository.watchActiveEvents(),
+          builder: (context, snapshot) {
+            // Loading state
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: colorScheme.primary,
                 ),
-              ),
-            ),
-            const SizedBox(height: 24),
+              );
+            }
 
-            // Event list items
-            ...events.map(
-              (event) => Column(
-                children: [
-                  _EventListTile(
-                    event: event,
-                    onTap: () {
-                      _showEventDetailBottomSheet(context, event);
-                    },
+            // Error state
+            if (snapshot.hasError) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.error_outline,
+                      size: 64,
+                      color: colorScheme.error,
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'Đã xảy ra lỗi',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: colorScheme.onSurface,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 32),
+                      child: Text(
+                        'Không thể tải dữ liệu. Vui lòng kiểm tra kết nối mạng.',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: colorScheme.onSurfaceVariant,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            // Empty state
+            final events = snapshot.data ?? [];
+            if (events.isEmpty) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.event_busy,
+                      size: 64,
+                      color: colorScheme.onSurfaceVariant,
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      'Chưa có sự kiện nào',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        color: colorScheme.onSurface,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+
+            // Success state - use EventEntity directly
+            return ListView(
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              children: [
+                // Banner - Use SmartImage instead of Image.asset
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: SmartImage(
+                      imageUrl: 'assets/images/church.png', // Can be Firebase URL too
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  const SizedBox(height: 16),
-                  // Divider like in the screenshot
-                  Divider(
-                    height: 1,
-                    thickness: 0.8,
-                    color: colorScheme.outlineVariant,
-                  ),
-                  const SizedBox(height: 8),
-                ],
-              ),
-            ),
-          ],
+                ),
+                SizedBox(height: 24),
+
+                // Use EventEntity directly - no conversion needed
+                ...events.map((event) {
+                  return Column(
+                    children: [
+                      _EventListTile(
+                        event: event,
+                        onTap: () {
+                          _showEventDetailBottomSheet(context, event);
+                        },
+                      ),
+                      SizedBox(height: 16),
+                      Divider(
+                        height: 1,
+                        thickness: 0.8,
+                        color: colorScheme.outlineVariant,
+                      ),
+                      SizedBox(height: 8),
+                    ],
+                  );
+                }),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 
-  void _showEventDetailBottomSheet(BuildContext context, EventItem event) {
+  void _showEventDetailBottomSheet(BuildContext context, EventEntity event) {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true, // full-height sheet
+      isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
         return EventDetailBottomSheet(event: event);
@@ -132,31 +192,9 @@ class EventsPage extends StatelessWidget {
   }
 }
 
-/// Simple data holder for the event.
-/// Later you can move this to a separate models file.
-class EventItem {
-  final String title;
-  final String? subtitle;
-  final String? dateDisplay;
-  final String heroImage;
-  final String thumbnailImage;
-  final String? location;
-  final String? notes;
-
-  const EventItem({
-    required this.title,
-    this.subtitle,
-    this.dateDisplay,
-    required this.heroImage,
-    required this.thumbnailImage,
-    this.location,
-    this.notes,
-  });
-}
-
-/// List tile that visually matches the first screenshot.
+/// List tile widget - uses EventEntity directly.
 class _EventListTile extends StatelessWidget {
-  final EventItem event;
+  final EventEntity event;
   final VoidCallback onTap;
 
   const _EventListTile({
@@ -176,26 +214,21 @@ class _EventListTile extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Thumbnail with the date badge over it (simplified for now).
+            // Thumbnail - Use SmartImage
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: SizedBox(
                 width: 90,
                 height: 70,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    Image.asset(
-                      event.thumbnailImage,
-                      fit: BoxFit.cover,
-                    ),
-                    // You can later build the JAN/08 badge here with Positioned.
-                  ],
+                child: SmartImage(
+                  imageUrl: event.getThumbnailImage(),
+                  fit: BoxFit.cover,
+                  width: 90,
+                  height: 70,
                 ),
               ),
             ),
             const SizedBox(width: 16),
-            // Texts
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

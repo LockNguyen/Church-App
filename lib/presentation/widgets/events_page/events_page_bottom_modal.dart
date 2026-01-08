@@ -1,8 +1,9 @@
+import 'package:church_app/presentation/widgets/smart_image.dart';
 import 'package:flutter/material.dart';
-import '../../pages/events_page.dart'; // for EventItem
+import '../../../domain/entities/event_entity.dart';
 
 class EventDetailBottomSheet extends StatelessWidget {
-  final EventItem event;
+  final EventEntity event;
 
   const EventDetailBottomSheet({
     super.key,
@@ -28,7 +29,6 @@ class EventDetailBottomSheet extends StatelessWidget {
           ),
           child: Column(
             children: [
-              // Top app bar row (back + title + action icon)
               Padding(
                 padding: const EdgeInsets.only(
                   top: 12,
@@ -77,20 +77,18 @@ class EventDetailBottomSheet extends StatelessWidget {
                     children: [
                       const SizedBox(height: 8),
 
-                      // Large hero image
                       ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: AspectRatio(
                           aspectRatio: 16 / 9,
-                          child: Image.asset(
-                            event.heroImage,
+                          child: SmartImage(
+                            imageUrl: event.getHeroImage(), // Use helper method
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
                       const SizedBox(height: 16),
 
-                      // Title + subtitle + date/time
                       Text(
                         event.title,
                         style: TextStyle(
@@ -99,8 +97,9 @@ class EventDetailBottomSheet extends StatelessWidget {
                           color: colorScheme.onSurface,
                         ),
                       ),
+                      const SizedBox(height: 4),
+                      
                       if (event.subtitle != null) ...[
-                        const SizedBox(height: 4),
                         Text(
                           event.subtitle!,
                           style: TextStyle(
@@ -108,18 +107,9 @@ class EventDetailBottomSheet extends StatelessWidget {
                             color: colorScheme.onSurfaceVariant,
                           ),
                         ),
-                        const SizedBox(height: 4)
-                      ],
-                      if (event.notes != null) ...[
-                        Text(
-                          event.notes!,
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: colorScheme.onSurfaceVariant,
-                          ),
-                        ),
                         const SizedBox(height: 4),
                       ],
+                      
                       if (event.dateDisplay != null)
                         Text(
                           event.dateDisplay!,
@@ -131,7 +121,6 @@ class EventDetailBottomSheet extends StatelessWidget {
 
                       const SizedBox(height: 24),
 
-                      // Share + Add to calendar row (simplified)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -151,7 +140,6 @@ class EventDetailBottomSheet extends StatelessWidget {
                       const SizedBox(height: 24),
 
                       if (event.location != null) ...[
-                        // Location section title
                         Text(
                           'Location',
                           style: TextStyle(
@@ -168,11 +156,29 @@ class EventDetailBottomSheet extends StatelessWidget {
                             color: colorScheme.onSurfaceVariant,
                           ),
                         ),
+                        const SizedBox(height: 12),
                       ],
 
-                      const SizedBox(height: 12),
+                      if (event.notes != null) ...[
+                        Text(
+                          'Notes',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: colorScheme.onSurface,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          event.notes!.replaceAll("\\n", "\n"),
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                      ],
 
-                      // Map placeholder – replace with real map widget later.
                       ClipRRect(
                         borderRadius: BorderRadius.circular(16),
                         child: Container(
