@@ -171,3 +171,19 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - Reference with $ref: "#/$defs/TypeName"
   - Nested types can reference other nested types
 ---
+
+## 2026-01-18 - US-012
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Created scripts/generate-models.sh using quicktype for Dart generation
+- Script is executable (chmod +x applied)
+- Created docs/schema-development.md with comprehensive documentation
+- Updated README.md with Schema-Driven Development section
+- Files changed:
+  - scripts/generate-models.sh (created, executable)
+  - docs/schema-development.md (created)
+  - README.md (added schema section)
+- **Learnings for future iterations:**
+  - quicktype requires: npm install -g quicktype
+  - Use --null-safety and --coders-in-class flags for Dart generation
+  - Generated files go to lib/data/models/generated/
+---
