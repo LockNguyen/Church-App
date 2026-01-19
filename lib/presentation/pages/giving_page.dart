@@ -43,7 +43,7 @@ class GivingPage extends StatelessWidget {
             ),
             SizedBox(height: 12),
             Text(
-              'Content coming soon',
+              l10n.contentComingSoon,
               style: TextStyle(
                 fontSize: 18,
                 color: colorScheme.onSurfaceVariant,

@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../domain/entities/discipleship_class_entity.dart';
 import '../../../domain/entities/discipleship_location_entity.dart';
 import '../../../core/utils/time_formatter.dart';
+import '../../../l10n/generated/app_localizations.dart';
 import '../smart_image.dart';
 
 class DiscipleshipLocationModal extends StatelessWidget {
@@ -16,6 +17,7 @@ class DiscipleshipLocationModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return DraggableScrollableSheet(
       initialChildSize: 0.94,
@@ -90,7 +92,7 @@ class DiscipleshipLocationModal extends StatelessWidget {
 
                       // Classes header
                       Text(
-                        'Các Lớp Học',
+                        l10n.sectionClasses,
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w700,

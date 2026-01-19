@@ -125,7 +125,7 @@ class _EventsPageState extends State<EventsPage> {
                     ),
                     SizedBox(height: 16),
                     Text(
-                      'Chưa có sự kiện nào',
+                      l10n.emptyNoEvents,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,

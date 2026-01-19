@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../l10n/generated/app_localizations.dart';
 
 class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomePageAppBar({super.key});
@@ -103,6 +104,7 @@ class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   void _openModalPage(BuildContext context, String title, Color backgroundColor) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     showModalBottomSheet(
       context: context,
@@ -137,7 +139,7 @@ class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
             color: backgroundColor,
             child: Center(
               child: Text(
-                'Content coming soon',
+                l10n.contentComingSoon,
                 style: TextStyle(
                   fontSize: 18,
                   color: colorScheme.onSurface,

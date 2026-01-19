@@ -187,6 +187,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Delete'**
   String get buttonDelete;
+
+  /// No description provided for @sectionLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get sectionLocation;
+
+  /// No description provided for @sectionNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get sectionNotes;
+
+  /// No description provided for @sectionClasses.
+  ///
+  /// In en, this message translates to:
+  /// **'Classes'**
+  String get sectionClasses;
+
+  /// No description provided for @emptyNoEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'No events yet'**
+  String get emptyNoEvents;
+
+  /// No description provided for @emptyNoCourses.
+  ///
+  /// In en, this message translates to:
+  /// **'No courses available'**
+  String get emptyNoCourses;
+
+  /// No description provided for @contentComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Content coming soon'**
+  String get contentComingSoon;
 }
 
 class _AppLocalizationsDelegate

@@ -52,4 +52,22 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get buttonDelete => 'Xóa';
+
+  @override
+  String get sectionLocation => 'Địa Điểm';
+
+  @override
+  String get sectionNotes => 'Ghi Chú';
+
+  @override
+  String get sectionClasses => 'Các Lớp Học';
+
+  @override
+  String get emptyNoEvents => 'Chưa có sự kiện nào';
+
+  @override
+  String get emptyNoCourses => 'Chưa có khóa học nào';
+
+  @override
+  String get contentComingSoon => 'Nội dung sắp có';
 }

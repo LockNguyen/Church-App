@@ -143,7 +143,7 @@ class EventDetailBottomSheet extends StatelessWidget {
 
                       if (event.location != null) ...[
                         Text(
-                          'Location',
+                          l10n.sectionLocation,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
@@ -163,7 +163,7 @@ class EventDetailBottomSheet extends StatelessWidget {
 
                       if (event.notes != null) ...[
                         Text(
-                          'Notes',
+                          l10n.sectionNotes,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,

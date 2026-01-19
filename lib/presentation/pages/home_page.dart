@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../l10n/generated/app_localizations.dart';
 import '../widgets/home_page/church_banner.dart';
 import '../widgets/home_page/navigation_card.dart';
 
@@ -231,6 +232,7 @@ class HomePage extends StatelessWidget {
 
   void _openModalPage(BuildContext context, String title) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     showModalBottomSheet(
       context: context,
@@ -262,7 +264,7 @@ class HomePage extends StatelessWidget {
           ),
           body: Center(
             child: Text(
-              'Content coming soon',
+              l10n.contentComingSoon,
               style: TextStyle(
                 fontSize: 18,
                 color: colorScheme.onSurface,

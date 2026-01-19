@@ -117,7 +117,7 @@ class _DiscipleshipPageState extends State<DiscipleshipPage> {
                     ),
                     SizedBox(height: 16),
                     Text(
-                      'Chưa có khóa học nào',
+                      l10n.emptyNoCourses,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,

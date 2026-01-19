@@ -52,4 +52,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get buttonDelete => 'Delete';
+
+  @override
+  String get sectionLocation => 'Location';
+
+  @override
+  String get sectionNotes => 'Notes';
+
+  @override
+  String get sectionClasses => 'Classes';
+
+  @override
+  String get emptyNoEvents => 'No events yet';
+
+  @override
+  String get emptyNoCourses => 'No courses available';
+
+  @override
+  String get contentComingSoon => 'Content coming soon';
 }

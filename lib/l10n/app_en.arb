@@ -14,5 +14,11 @@
   "buttonAddToCalendar": "Add to calendar",
   "buttonCancel": "Cancel",
   "buttonSave": "Save",
-  "buttonDelete": "Delete"
+  "buttonDelete": "Delete",
+  "sectionLocation": "Location",
+  "sectionNotes": "Notes",
+  "sectionClasses": "Classes",
+  "emptyNoEvents": "No events yet",
+  "emptyNoCourses": "No courses available",
+  "contentComingSoon": "Content coming soon"
 }

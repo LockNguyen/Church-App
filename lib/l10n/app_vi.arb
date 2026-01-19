@@ -14,5 +14,11 @@
   "buttonAddToCalendar": "Thêm vào Lịch",
   "buttonCancel": "Hủy",
   "buttonSave": "Lưu",
-  "buttonDelete": "Xóa"
+  "buttonDelete": "Xóa",
+  "sectionLocation": "Địa Điểm",
+  "sectionNotes": "Ghi Chú",
+  "sectionClasses": "Các Lớp Học",
+  "emptyNoEvents": "Chưa có sự kiện nào",
+  "emptyNoCourses": "Chưa có khóa học nào",
+  "contentComingSoon": "Nội dung sắp có"
 }

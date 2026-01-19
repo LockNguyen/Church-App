@@ -82,3 +82,19 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - No confirmation dialogs currently exist in the app
   - Cancel/Save/Delete buttons are defined for future use
 ---
+
+## 2026-01-18 - US-006
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Added section headers (sectionLocation, sectionNotes, sectionClasses)
+- Added empty states (emptyNoEvents, emptyNoCourses, contentComingSoon)
+- Updated events_page_bottom_modal.dart, discipleship_location_bottom_modal.dart
+- Updated events_page.dart, discipleship_page.dart with empty state translations
+- Updated prayer_page.dart, giving_page.dart, sermon_page.dart with contentComingSoon
+- Updated home_page.dart, home_page_app_bar.dart with contentComingSoon
+- Files changed:
+  - lib/l10n/app_en.arb, lib/l10n/app_vi.arb
+  - Multiple presentation files for section headers and empty states
+- **Learnings for future iterations:**
+  - Don't add l10n variable in build() if only used in helper methods
+  - Each helper method should get its own l10n from context
+---
