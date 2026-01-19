@@ -1,3 +1,19 @@
 # Ralph Progress Log
 Started: Sun Jan 18 21:06:20 EST 2026
+
+## Codebase Patterns
+- flutter_localizations requires intl ^0.20.2 (not ^0.19.0)
+- flutter analyze shows only warnings/info (deprecation notices) - no actual errors
+
+---
+
+## Sun Jan 18 2026 - US-001
+Thread: https://ampcode.com/threads/T-019bd408-c6c9-711b-a875-bd279be4c3a3
+- Added `flutter_localizations` SDK dependency to pubspec.yaml
+- Updated `intl` from ^0.19.0 to ^0.20.2 for compatibility
+- Files changed: pubspec.yaml, pubspec.lock
+- **Learnings for future iterations:**
+  - flutter_localizations pins intl version; must match constraint
+  - Pre-existing deprecation warnings exist in codebase (withOpacity, surfaceVariant)
+
 ---

@@ -14,8 +14,8 @@
                 "flutter analyze passes with no errors"
             ],
             "priority": 1,
-            "passes": false,
-            "notes": ""
+            "passes": true,
+            "notes": "intl upgraded to ^0.20.2 for compatibility with flutter_localizations"
         },
         {
             "id": "US-002",
