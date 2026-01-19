@@ -2,6 +2,8 @@
 - Flutter localization uses `flutter_localizations` SDK package (already configured in pubspec.yaml)
 - Uses Clean Architecture: domain/entities, data/models, data/repositories, presentation
 - Firebase Firestore for data, Firebase Storage for images
+- l10n: ARB files in lib/l10n/, generated code in lib/l10n/generated/
+- l10n: Run `flutter gen-l10n` after changing ARB files
 
 ---
 
@@ -28,4 +30,25 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
 - **Learnings for future iterations:**
   - main.dart was already configured with localization delegates
   - No code changes needed - US-002 was pre-implemented
+---
+
+## 2026-01-18 - US-003
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Created lib/l10n/ directory with app_en.arb and app_vi.arb
+- Created l10n.yaml with output-dir: lib/l10n/generated
+- Added generate: true to pubspec.yaml flutter section
+- Ran flutter gen-l10n to generate AppLocalizations class
+- Updated main.dart to import and use AppLocalizations.delegate
+- Files changed:
+  - lib/l10n/app_en.arb (created - nav labels in English)
+  - lib/l10n/app_vi.arb (created - nav labels in Vietnamese)
+  - lib/l10n/generated/*.dart (generated files)
+  - l10n.yaml (created - l10n configuration)
+  - pubspec.yaml (added generate: true)
+  - lib/main.dart (added AppLocalizations.delegate import)
+- **Learnings for future iterations:**
+  - Use output-dir: lib/l10n/generated to persist generated files
+  - Import as 'l10n/generated/app_localizations.dart' (relative import)
+  - synthetic-package option is deprecated in newer Flutter versions
+  - Run `flutter gen-l10n` after changing ARB files
 ---
