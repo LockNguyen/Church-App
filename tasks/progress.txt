@@ -142,3 +142,17 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - Schema files live in /schemas at project root
   - Follow JSON Schema Draft 2020-12 specification
 ---
+
+## 2026-01-18 - US-010
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Created schemas/event.schema.json following JSON Schema Draft 2020-12
+- Schema includes all Event fields: id, title, subtitle, dateDisplay, heroImageUrl, thumbnailImageUrl, location, notes, startDateTime, endDateTime, isActive, createdAt, updatedAt, order
+- Defined required fields: id, title, isActive, createdAt, updatedAt, order
+- Used type arrays for nullable fields (e.g., ["string", "null"])
+- Files changed:
+  - schemas/event.schema.json (created)
+- **Learnings for future iterations:**
+  - Use ["string", "null"] for optional/nullable fields in JSON Schema
+  - Use format: "date-time" for ISO 8601 datetime fields
+  - Match required fields with Dart entity's required constructor params
+---
