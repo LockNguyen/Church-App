@@ -9,5 +9,10 @@
   "pageEventsTitle": "Group Calendar",
   "pageDiscipleshipTitle": "Discipleship",
   "pagePrayerTitle": "Prayer Requests",
-  "pageGivingTitle": "Contact"
+  "pageGivingTitle": "Contact",
+  "buttonShare": "Share",
+  "buttonAddToCalendar": "Add to calendar",
+  "buttonCancel": "Cancel",
+  "buttonSave": "Save",
+  "buttonDelete": "Delete"
 }

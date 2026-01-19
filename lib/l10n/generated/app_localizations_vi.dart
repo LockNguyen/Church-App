@@ -37,4 +37,19 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get pageGivingTitle => 'Liên Hệ';
+
+  @override
+  String get buttonShare => 'Chia Sẻ';
+
+  @override
+  String get buttonAddToCalendar => 'Thêm vào Lịch';
+
+  @override
+  String get buttonCancel => 'Hủy';
+
+  @override
+  String get buttonSave => 'Lưu';
+
+  @override
+  String get buttonDelete => 'Xóa';
 }

@@ -9,5 +9,10 @@
   "pageEventsTitle": "Lịch Nhóm",
   "pageDiscipleshipTitle": "Môn Đồ Hóa",
   "pagePrayerTitle": "Cầu Nguyện",
-  "pageGivingTitle": "Liên Hệ"
+  "pageGivingTitle": "Liên Hệ",
+  "buttonShare": "Chia Sẻ",
+  "buttonAddToCalendar": "Thêm vào Lịch",
+  "buttonCancel": "Hủy",
+  "buttonSave": "Lưu",
+  "buttonDelete": "Xóa"
 }

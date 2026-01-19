@@ -70,3 +70,15 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - Pattern: Import AppLocalizations and get `final l10n = AppLocalizations.of(context)!;`
   - Use l10n.keyName to access localized strings
 ---
+
+## 2026-01-18 - US-005
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Added button labels to ARB files (buttonShare, buttonAddToCalendar, buttonCancel, buttonSave, buttonDelete)
+- Updated events_page_bottom_modal.dart to use localized Share and Add to calendar buttons
+- Files changed:
+  - lib/l10n/app_en.arb, lib/l10n/app_vi.arb (added button labels)
+  - lib/presentation/widgets/events_page/events_page_bottom_modal.dart
+- **Learnings for future iterations:**
+  - No confirmation dialogs currently exist in the app
+  - Cancel/Save/Delete buttons are defined for future use
+---

@@ -157,6 +157,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Contact'**
   String get pageGivingTitle;
+
+  /// No description provided for @buttonShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get buttonShare;
+
+  /// No description provided for @buttonAddToCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to calendar'**
+  String get buttonAddToCalendar;
+
+  /// No description provided for @buttonCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get buttonCancel;
+
+  /// No description provided for @buttonSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get buttonSave;
+
+  /// No description provided for @buttonDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get buttonDelete;
 }
 
 class _AppLocalizationsDelegate

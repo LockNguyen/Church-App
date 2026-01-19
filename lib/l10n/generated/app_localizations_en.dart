@@ -37,4 +37,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pageGivingTitle => 'Contact';
+
+  @override
+  String get buttonShare => 'Share';
+
+  @override
+  String get buttonAddToCalendar => 'Add to calendar';
+
+  @override
+  String get buttonCancel => 'Cancel';
+
+  @override
+  String get buttonSave => 'Save';
+
+  @override
+  String get buttonDelete => 'Delete';
 }
