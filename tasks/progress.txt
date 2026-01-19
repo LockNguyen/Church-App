@@ -114,3 +114,19 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - ARB files support parameterized messages with @key metadata and placeholders
   - Use l10n.errorCannotOpen(contact) for parameterized messages
 ---
+
+## 2026-01-18 - US-008
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Updated TimeFormatter to accept locale parameter
+- Added getDayOfWeek() with locale-aware formatting (Vietnamese: T2-CN, English: Mon-Sun)
+- Added formatDate() and formatShortDate() using DateFormat with locale
+- Updated formatClassTimeRange() to accept localeCode parameter
+- Updated discipleship_location_bottom_modal.dart to pass Localizations.localeOf(context).languageCode
+- Files changed:
+  - lib/core/utils/time_formatter.dart (refactored to locale-aware)
+  - lib/presentation/widgets/discipleship_page/discipleship_location_bottom_modal.dart
+- **Learnings for future iterations:**
+  - Use Localizations.localeOf(context).languageCode to get current locale
+  - DateFormat.E(locale).format() for day names, DateFormat.yMMMMd(locale) for dates
+  - Vietnamese custom day abbreviations (T2-T7, CN) need special handling
+---

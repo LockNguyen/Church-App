@@ -179,6 +179,7 @@ class _ClassCard extends StatelessWidget {
                   TimeFormatter.formatClassTimeRange(
                     classEntity.startTime,
                     classEntity.endTime,
+                    Localizations.localeOf(context).languageCode,
                   ),
                   style: TextStyle(
                     fontSize: 16,
