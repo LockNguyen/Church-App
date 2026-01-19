@@ -29,8 +29,8 @@
                 "flutter analyze passes"
             ],
             "priority": 2,
-            "passes": false,
-            "notes": ""
+            "passes": true,
+            "notes": "Added GlobalMaterialLocalizations, GlobalWidgetsLocalizations, GlobalCupertinoLocalizations delegates"
         },
         {
             "id": "US-003",

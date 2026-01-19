@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../core/constants/firebase_constants.dart';
 import '../../domain/entities/discipleship_course_entity.dart';
 import '../../domain/entities/discipleship_location_entity.dart';
-import '../../domain/entities/discipleship_class_entity.dart';
 import '../../domain/repositories/discipleship_repository.dart';
 import '../models/discipleship_course_model.dart';
 import '../models/discipleship_location_model.dart';

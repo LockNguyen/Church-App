@@ -1,0 +1,19 @@
+## Codebase Patterns
+- Flutter localization uses `flutter_localizations` SDK package (already configured in pubspec.yaml)
+- Uses Clean Architecture: domain/entities, data/models, data/repositories, presentation
+- Firebase Firestore for data, Firebase Storage for images
+
+---
+
+## 2026-01-18 - US-001
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Verified `flutter_localizations` and `intl: ^0.20.2` already in pubspec.yaml
+- Fixed unused import warnings in time_formatter.dart and discipleship_repository_impl.dart
+- `flutter pub get` and `flutter analyze` pass successfully
+- Files changed:
+  - lib/core/utils/time_formatter.dart (removed unused intl import)
+  - lib/data/repositories/discipleship_repository_impl.dart (removed unused discipleship_class_entity import)
+- **Learnings for future iterations:**
+  - Dependencies were already configured; focus was on cleanup
+  - intl package version 0.20.2 is newer than PRD specified 0.19.0 - OK
+---

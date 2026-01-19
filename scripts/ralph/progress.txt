@@ -17,3 +17,16 @@ Thread: https://ampcode.com/threads/T-019bd408-c6c9-711b-a875-bd279be4c3a3
   - Pre-existing deprecation warnings exist in codebase (withOpacity, surfaceVariant)
 
 ---
+
+## Sun Jan 18 2026 - US-002
+Thread: https://ampcode.com/threads/T-019bd409-e9a9-72de-a33f-95052b14cd05
+- Configured Flutter localization in MaterialApp
+- Added localizationsDelegates (Material, Widgets, Cupertino)
+- Added supportedLocales for English (en) and Vietnamese (vi)
+- Added localeResolutionCallback defaulting to English
+- Files changed: lib/main.dart
+- **Learnings for future iterations:**
+  - Import flutter_localizations/flutter_localizations.dart for Global*Localizations.delegate
+  - Pre-existing deprecation warnings still present - not related to i18n changes
+
+---
