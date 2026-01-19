@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
       color: colorScheme.surface, // This is the Scaffold's default background.
@@ -30,28 +31,28 @@ class HomePage extends StatelessWidget {
               child: Column(
                 children: [
                   NavigationCard(
-                    title: 'Lịch Nhóm',
+                    title: l10n.pageEventsTitle,
                     image: 'images/calendar.jpg',
                     accentColor: colorScheme.primary,
                     onTap: () => onNavigate(1),
                   ),
                   SizedBox(height: 24),
                   NavigationCard(
-                    title: 'Môn Đồ Hóa',
+                    title: l10n.pageDiscipleshipTitle,
                     image: 'images/preaching.jpg',
                     accentColor: colorScheme.secondary,
                     onTap: () => onNavigate(2),
                   ),
                   SizedBox(height: 24),
                   NavigationCard(
-                    title: 'Nan Đề Cầu Nguyện',
+                    title: l10n.pagePrayerTitle,
                     image: 'images/praying.jpg',
                     accentColor: colorScheme.tertiary,
                     onTap: () => onNavigate(3),
                   ),
                   SizedBox(height: 24),
                   NavigationCard(
-                    title: 'Liên Hệ',
+                    title: l10n.pageGivingTitle,
                     image: 'images/giving.jpg',
                     accentColor: colorScheme.primaryContainer,
                     onTap: () => onNavigate(4),

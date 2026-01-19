@@ -12,7 +12,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get appTitle => 'VBC-WS';
 
   @override
-  String get navHome => 'Home';
+  String get navHome => 'Trang Chủ';
 
   @override
   String get navEvents => 'Lịch';
