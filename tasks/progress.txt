@@ -187,3 +187,19 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - Use --null-safety and --coders-in-class flags for Dart generation
   - Generated files go to lib/data/models/generated/
 ---
+
+## 2026-01-18 - US-013
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Ran generate-models.sh to create Dart models from schemas
+- Generated event_generated.dart with Event class, fromJson(), toJson()
+- Generated discipleship_course_generated.dart with nested types
+- All generated classes have null-safe types based on schema required fields
+- Flutter analyze passes on generated code
+- Files changed:
+  - lib/data/models/generated/event_generated.dart (generated)
+  - lib/data/models/generated/discipleship_course_generated.dart (generated)
+- **Learnings for future iterations:**
+  - quicktype generates fromRawJson/toRawJson in addition to fromJson/toJson
+  - Generated classes use fields (not final) - may need to add immutability
+  - DateTime fields are properly typed from format: date-time schema
+---
