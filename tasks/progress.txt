@@ -130,3 +130,15 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - DateFormat.E(locale).format() for day names, DateFormat.yMMMMd(locale) for dates
   - Vietnamese custom day abbreviations (T2-T7, CN) need special handling
 ---
+
+## 2026-01-18 - US-009
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Created /schemas directory at project root
+- Created README.md explaining schema structure, conventions, and usage
+- Files changed:
+  - schemas/ (new directory)
+  - schemas/README.md (created)
+- **Learnings for future iterations:**
+  - Schema files live in /schemas at project root
+  - Follow JSON Schema Draft 2020-12 specification
+---
