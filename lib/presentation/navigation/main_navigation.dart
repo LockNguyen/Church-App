@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../pages/home_page.dart';
 import '../pages/events_page.dart';
 import '../pages/discipleship_page.dart';
-import '../pages/sermon_page.dart';
 import '../pages/prayer_page.dart';
 import '../pages/giving_page.dart';
 import '../widgets/all_pages/bottom_navbar.dart';
@@ -38,7 +37,6 @@ class _MainNavigationState extends State<MainNavigation> {
       HomePage(onNavigate: _onNavigate),
       EventsPage(onNavigate: _onNavigate),
       DiscipleshipPage(onNavigate: _onNavigate),
-      SermonPage(),
       PrayerPage(),
       GivingPage(),
     ];
@@ -57,55 +55,54 @@ class _MainNavigationState extends State<MainNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold( 
-      body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 300),
-        switchInCurve: Curves.easeInOut,
-        switchOutCurve: Curves.easeInOut,
-        
-        transitionBuilder: (Widget child, Animation<double> animation) {
-          // Extract the key from the child to determine if it's current or old.
-          final widget = child as KeyedSubtree;
-          final widgetKey = widget.key as ValueKey<int>;
-          final isIncoming = widgetKey.value == _currentIndex;
-          final isGoingRight = _previousIndex < _currentIndex;
-          
-          // Incoming: slide from right (1.0, 0.0) to center (0.0, 0.0)
-          // Outgoing: slide from center (0.0, 0.0) to left (-1.0, 0.0)
-          final offsetAnimation = Tween<Offset>(
-            begin: isGoingRight
-              ? (isIncoming ? Offset(1.0, 0.0) : Offset(-1.0, 0.0))
-              : (isIncoming ? Offset(-1.0, 0.0) : Offset(1.0, 0.0)),
-            end: Offset.zero, // end animation is reverse, so page slides in at 0 and also out at 0
-          ).animate(CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeInOut,
-          ));
+    return Scaffold(
+      body: SafeArea(
+        bottom: false, // Bottom is handled by the bottom nav bar
+        child: AnimatedSwitcher(
+          duration: Duration(milliseconds: 300),
+          switchInCurve: Curves.easeInOut,
+          switchOutCurve: Curves.easeInOut,
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            // Extract the key from the child to determine if it's current or old.
+            final widget = child as KeyedSubtree;
+            final widgetKey = widget.key as ValueKey<int>;
+            final isIncoming = widgetKey.value == _currentIndex;
+            final isGoingRight = _previousIndex < _currentIndex;
 
-          return SlideTransition(
-            position: offsetAnimation,
-            child: child,
-          );
-        },
-        
-        // Stack both widgets during transition so they're visible simultaneously.
-        layoutBuilder: (Widget? currentChild, List<Widget> previousChildren) {
-          return Stack(
-            alignment: Alignment.center,
-            children: [
-              ...previousChildren, // Old page(s) underneath
-              if (currentChild != null) currentChild, // New page on top
-            ],
-          );
-        },
-        
-        child: KeyedSubtree(
-          key: ValueKey<int>(_currentIndex),
-          child: _pages[_currentIndex],
+            // Incoming: slide from right (1.0, 0.0) to center (0.0, 0.0)
+            // Outgoing: slide from center (0.0, 0.0) to left (-1.0, 0.0)
+            final offsetAnimation = Tween<Offset>(
+              begin: isGoingRight
+                  ? (isIncoming ? Offset(1.0, 0.0) : Offset(-1.0, 0.0))
+                  : (isIncoming ? Offset(-1.0, 0.0) : Offset(1.0, 0.0)),
+              end: Offset.zero,
+            ).animate(CurvedAnimation(
+              parent: animation,
+              curve: Curves.easeInOut,
+            ));
+
+            return SlideTransition(
+              position: offsetAnimation,
+              child: child,
+            );
+          },
+          // Stack both widgets during transition so they're visible simultaneously.
+          layoutBuilder: (Widget? currentChild, List<Widget> previousChildren) {
+            return Stack(
+              alignment: Alignment.center,
+              children: [
+                ...previousChildren, // Old page(s) underneath
+                if (currentChild != null) currentChild, // New page on top
+              ],
+            );
+          },
+          child: KeyedSubtree(
+            key: ValueKey<int>(_currentIndex),
+            child: _pages[_currentIndex],
+          ),
         ),
       ),
 
-      
       // Bottom nav bar stays outside AnimatedSwitcher so it never animates.
       // It remains stationary with built-in Material 3 tap animations intact.
       bottomNavigationBar: BottomNavBar(
