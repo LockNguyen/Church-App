@@ -70,4 +70,24 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get contentComingSoon => 'Nội dung sắp có';
+
+  @override
+  String get errorGeneric => 'Đã xảy ra lỗi';
+
+  @override
+  String get errorTryAgain => 'Vui lòng thử lại';
+
+  @override
+  String get errorNoInternet =>
+      'Không thể tải dữ liệu. Vui lòng kiểm tra kết nối mạng.';
+
+  @override
+  String errorCannotOpen(String contact) {
+    return 'Không thể mở $contact';
+  }
+
+  @override
+  String errorUnknown(String message) {
+    return 'Lỗi: $message';
+  }
 }

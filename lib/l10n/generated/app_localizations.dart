@@ -223,6 +223,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Content coming soon'**
   String get contentComingSoon;
+
+  /// No description provided for @errorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'An error occurred'**
+  String get errorGeneric;
+
+  /// No description provided for @errorTryAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Please try again'**
+  String get errorTryAgain;
+
+  /// No description provided for @errorNoInternet.
+  ///
+  /// In en, this message translates to:
+  /// **'Unable to load data. Please check your network connection.'**
+  String get errorNoInternet;
+
+  /// No description provided for @errorCannotOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Cannot open {contact}'**
+  String errorCannotOpen(String contact);
+
+  /// No description provided for @errorUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {message}'**
+  String errorUnknown(String message);
 }
 
 class _AppLocalizationsDelegate

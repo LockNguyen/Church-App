@@ -20,5 +20,24 @@
   "sectionClasses": "Classes",
   "emptyNoEvents": "No events yet",
   "emptyNoCourses": "No courses available",
-  "contentComingSoon": "Content coming soon"
+  "contentComingSoon": "Content coming soon",
+  "errorGeneric": "An error occurred",
+  "errorTryAgain": "Please try again",
+  "errorNoInternet": "Unable to load data. Please check your network connection.",
+  "errorCannotOpen": "Cannot open {contact}",
+  "@errorCannotOpen": {
+    "placeholders": {
+      "contact": {
+        "type": "String"
+      }
+    }
+  },
+  "errorUnknown": "Error: {message}",
+  "@errorUnknown": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  }
 }

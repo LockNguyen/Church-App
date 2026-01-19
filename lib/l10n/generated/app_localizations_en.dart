@@ -70,4 +70,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get contentComingSoon => 'Content coming soon';
+
+  @override
+  String get errorGeneric => 'An error occurred';
+
+  @override
+  String get errorTryAgain => 'Please try again';
+
+  @override
+  String get errorNoInternet =>
+      'Unable to load data. Please check your network connection.';
+
+  @override
+  String errorCannotOpen(String contact) {
+    return 'Cannot open $contact';
+  }
+
+  @override
+  String errorUnknown(String message) {
+    return 'Error: $message';
+  }
 }

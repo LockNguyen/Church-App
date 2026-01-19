@@ -87,7 +87,7 @@ class _EventsPageState extends State<EventsPage> {
                     ),
                     SizedBox(height: 16),
                     Text(
-                      'Đã xảy ra lỗi',
+                      l10n.errorGeneric,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
@@ -98,7 +98,7 @@ class _EventsPageState extends State<EventsPage> {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 32),
                       child: Text(
-                        'Không thể tải dữ liệu. Vui lòng kiểm tra kết nối mạng.',
+                        l10n.errorNoInternet,
                         style: TextStyle(
                           fontSize: 14,
                           color: colorScheme.onSurfaceVariant,

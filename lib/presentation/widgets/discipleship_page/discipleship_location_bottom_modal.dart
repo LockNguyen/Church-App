@@ -273,6 +273,8 @@ class _ClassCard extends StatelessWidget {
       uri = Uri.parse('tel:$phone');
     }
 
+    final l10n = AppLocalizations.of(context)!;
+
     try {
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);
@@ -280,7 +282,7 @@ class _ClassCard extends StatelessWidget {
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Không thể mở $contact'),
+              content: Text(l10n.errorCannotOpen(contact)),
               backgroundColor: Theme.of(context).colorScheme.error,
             ),
           );
@@ -290,7 +292,7 @@ class _ClassCard extends StatelessWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Lỗi: ${e.toString()}'),
+            content: Text(l10n.errorUnknown(e.toString())),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );

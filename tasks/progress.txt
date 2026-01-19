@@ -98,3 +98,19 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - Don't add l10n variable in build() if only used in helper methods
   - Each helper method should get its own l10n from context
 ---
+
+## 2026-01-18 - US-007
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Added error messages (errorGeneric, errorTryAgain, errorNoInternet)
+- Added parameterized error messages (errorCannotOpen, errorUnknown with placeholders)
+- Updated events_page.dart, discipleship_page.dart error states
+- Updated discipleship_location_bottom_modal.dart snackbar error messages
+- Files changed:
+  - lib/l10n/app_en.arb, lib/l10n/app_vi.arb
+  - lib/presentation/pages/events_page.dart
+  - lib/presentation/pages/discipleship_page.dart
+  - lib/presentation/widgets/discipleship_page/discipleship_location_bottom_modal.dart
+- **Learnings for future iterations:**
+  - ARB files support parameterized messages with @key metadata and placeholders
+  - Use l10n.errorCannotOpen(contact) for parameterized messages
+---
