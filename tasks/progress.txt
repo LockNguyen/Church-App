@@ -17,3 +17,15 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - Dependencies were already configured; focus was on cleanup
   - intl package version 0.20.2 is newer than PRD specified 0.19.0 - OK
 ---
+
+## 2026-01-18 - US-002
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Verified MaterialApp already configured with localization in lib/main.dart
+- localizationsDelegates: GlobalMaterialLocalizations, GlobalWidgetsLocalizations, GlobalCupertinoLocalizations
+- supportedLocales: en, vi
+- localeResolutionCallback defaults to English
+- Flutter analyze passes
+- **Learnings for future iterations:**
+  - main.dart was already configured with localization delegates
+  - No code changes needed - US-002 was pre-implemented
+---
