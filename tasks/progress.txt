@@ -156,3 +156,18 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - Use format: "date-time" for ISO 8601 datetime fields
   - Match required fields with Dart entity's required constructor params
 ---
+
+## 2026-01-18 - US-011
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Created schemas/discipleship_course.schema.json with nested types
+- Includes Course (id, name, description, locations)
+- Nested DiscipleshipLocation in $defs (id, name, thumbnailImageUrl, classes)
+- Nested DiscipleshipClass in $defs (id, startTime, endTime, contact, passage)
+- Used $ref for nested type references
+- Files changed:
+  - schemas/discipleship_course.schema.json (created)
+- **Learnings for future iterations:**
+  - Use $defs for nested type definitions in JSON Schema
+  - Reference with $ref: "#/$defs/TypeName"
+  - Nested types can reference other nested types
+---
