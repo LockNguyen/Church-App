@@ -4,6 +4,10 @@
 - Firebase Firestore for data, Firebase Storage for images
 - l10n: ARB files in lib/l10n/, generated code in lib/l10n/generated/
 - l10n: Run `flutter gen-l10n` after changing ARB files
+- l10n: Import AppLocalizations from 'l10n/generated/app_localizations.dart'
+- l10n: Use `Localizations.localeOf(context).languageCode` for locale-aware formatting
+- Schema: JSON Schema definitions in /schemas/, generated Dart in lib/data/models/generated/
+- Schema: Run `./scripts/generate-models.sh` after schema changes (requires quicktype)
 
 ---
 
@@ -202,4 +206,21 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - quicktype generates fromRawJson/toRawJson in addition to fromJson/toJson
   - Generated classes use fields (not final) - may need to add immutability
   - DateTime fields are properly typed from format: date-time schema
+---
+
+## 2026-01-18 - US-014
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Verified generated models are compatible with existing entity/model structure
+- Added schema documentation comments to event_model.dart and discipleship_course_model.dart
+- Architecture preserved: Entity (domain) → Model (Firestore) → Generated (JSON API)
+- Existing Firestore serialization still works correctly
+- Flutter analyze passes
+- Files changed:
+  - lib/data/models/event_model.dart (added schema reference comments)
+  - lib/data/models/discipleship_course_model.dart (added schema reference comments)
+- **Learnings for future iterations:**
+  - Keep generated files as-is (they get overwritten)
+  - Use existing models for Firestore-specific logic
+  - Generated models useful for JSON API exports
+  - Document schema references in model files
 ---

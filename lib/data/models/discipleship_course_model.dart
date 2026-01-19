@@ -3,6 +3,8 @@ import '../../core/constants/firebase_constants.dart';
 import '../../domain/entities/discipleship_course_entity.dart';
 import '../../domain/entities/discipleship_location_entity.dart';
 
+/// Schema definition: /schemas/discipleship_course.schema.json
+/// Generated type: /lib/data/models/generated/discipleship_course_generated.dart
 class DiscipleshipCourseModel extends DiscipleshipCourseEntity {
   const DiscipleshipCourseModel({
     required super.id,
