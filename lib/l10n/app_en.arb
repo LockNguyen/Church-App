@@ -2,8 +2,12 @@
   "@@locale": "en",
   "appTitle": "VBC-WS",
   "navHome": "Home",
-  "navEvents": "Events",
+  "navEvents": "Calendar",
   "navDiscipleship": "Discipleship",
   "navPrayer": "Prayer",
-  "navGiving": "Giving"
+  "navGiving": "Contact",
+  "pageEventsTitle": "Group Calendar",
+  "pageDiscipleshipTitle": "Discipleship",
+  "pagePrayerTitle": "Prayer Requests",
+  "pageGivingTitle": "Contact"
 }

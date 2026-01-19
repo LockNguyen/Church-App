@@ -52,3 +52,21 @@ Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
   - synthetic-package option is deprecated in newer Flutter versions
   - Run `flutter gen-l10n` after changing ARB files
 ---
+
+## 2026-01-18 - US-004
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Added all navigation labels to ARB files (navHome, navEvents, navDiscipleship, navPrayer, navGiving)
+- Added page title translations (pageEventsTitle, pageDiscipleshipTitle, pagePrayerTitle, pageGivingTitle)
+- Updated bottom_navbar.dart to use AppLocalizations
+- Updated events_page.dart, discipleship_page.dart, prayer_page.dart, giving_page.dart with localized titles
+- Files changed:
+  - lib/l10n/app_en.arb, lib/l10n/app_vi.arb (added nav + page titles)
+  - lib/presentation/widgets/all_pages/bottom_navbar.dart
+  - lib/presentation/pages/events_page.dart
+  - lib/presentation/pages/discipleship_page.dart
+  - lib/presentation/pages/prayer_page.dart
+  - lib/presentation/pages/giving_page.dart
+- **Learnings for future iterations:**
+  - Pattern: Import AppLocalizations and get `final l10n = AppLocalizations.of(context)!;`
+  - Use l10n.keyName to access localized strings
+---

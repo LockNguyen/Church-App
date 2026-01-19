@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../data/repositories/discipleship_repository_impl.dart';
 import '../../domain/entities/discipleship_course_entity.dart';
 import '../../domain/entities/discipleship_location_entity.dart';
+import '../../l10n/generated/app_localizations.dart';
 import '../widgets/discipleship_page/discipleship_location_bottom_modal.dart';
 import '../widgets/smart_image.dart';
 
@@ -30,6 +31,7 @@ class _DiscipleshipPageState extends State<DiscipleshipPage> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -42,7 +44,7 @@ class _DiscipleshipPageState extends State<DiscipleshipPage> {
         ),
         centerTitle: true,
         title: Text(
-          'Môn Đồ Hóa',
+          l10n.pageDiscipleshipTitle,
           style: TextStyle(
             color: colorScheme.onSurface,
             fontSize: 22,

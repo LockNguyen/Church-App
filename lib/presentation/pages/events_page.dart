@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../data/repositories/event_repository_impl.dart';
 import '../../domain/entities/event_entity.dart';
+import '../../l10n/generated/app_localizations.dart';
 import '../widgets/events_page/events_page_bottom_modal.dart';
 import '../widgets/smart_image.dart';
 
@@ -29,6 +30,7 @@ class _EventsPageState extends State<EventsPage> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +43,7 @@ class _EventsPageState extends State<EventsPage> {
         ),
         centerTitle: true,
         title: Text(
-          'Lịch Nhóm',
+          l10n.pageEventsTitle,
           style: TextStyle(
             color: colorScheme.onSurface,
             fontSize: 22,

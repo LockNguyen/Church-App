@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../l10n/generated/app_localizations.dart';
 
 class GivingPage extends StatelessWidget {
   const GivingPage({super.key});
@@ -6,6 +7,7 @@ class GivingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -13,7 +15,7 @@ class GivingPage extends StatelessWidget {
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          'Giving',
+          l10n.pageGivingTitle,
           style: TextStyle(
             color: colorScheme.onSurface,
             fontSize: 20,
@@ -32,7 +34,7 @@ class GivingPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Giving',
+              l10n.pageGivingTitle,
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,

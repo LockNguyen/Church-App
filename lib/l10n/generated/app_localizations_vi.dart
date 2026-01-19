@@ -12,10 +12,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get appTitle => 'VBC-WS';
 
   @override
-  String get navHome => 'Trang Chủ';
+  String get navHome => 'Home';
 
   @override
-  String get navEvents => 'Sự Kiện';
+  String get navEvents => 'Lịch';
 
   @override
   String get navDiscipleship => 'Môn Đồ Hóa';
@@ -24,5 +24,17 @@ class AppLocalizationsVi extends AppLocalizations {
   String get navPrayer => 'Cầu Nguyện';
 
   @override
-  String get navGiving => 'Dâng Hiến';
+  String get navGiving => 'Liên Hệ';
+
+  @override
+  String get pageEventsTitle => 'Lịch Nhóm';
+
+  @override
+  String get pageDiscipleshipTitle => 'Môn Đồ Hóa';
+
+  @override
+  String get pagePrayerTitle => 'Cầu Nguyện';
+
+  @override
+  String get pageGivingTitle => 'Liên Hệ';
 }

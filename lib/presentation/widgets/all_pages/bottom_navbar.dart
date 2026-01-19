@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../l10n/generated/app_localizations.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -13,6 +14,7 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return BottomNavigationBar(
       currentIndex: currentIndex,
@@ -27,23 +29,23 @@ class BottomNavBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: 'Home',
+          label: l10n.navHome,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.calendar_today),
-          label: 'Lịch',
+          label: l10n.navEvents,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.grass),
-          label: 'Môn Đồ Hóa',
+          label: l10n.navDiscipleship,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.volunteer_activism),
-          label: 'Cầu Nguyện',
+          label: l10n.navPrayer,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.card_giftcard),
-          label: 'Liên Hệ',
+          label: l10n.navGiving,
         ),
       ],
     );

@@ -15,7 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navHome => 'Home';
 
   @override
-  String get navEvents => 'Events';
+  String get navEvents => 'Calendar';
 
   @override
   String get navDiscipleship => 'Discipleship';
@@ -24,5 +24,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navPrayer => 'Prayer';
 
   @override
-  String get navGiving => 'Giving';
+  String get navGiving => 'Contact';
+
+  @override
+  String get pageEventsTitle => 'Group Calendar';
+
+  @override
+  String get pageDiscipleshipTitle => 'Discipleship';
+
+  @override
+  String get pagePrayerTitle => 'Prayer Requests';
+
+  @override
+  String get pageGivingTitle => 'Contact';
 }

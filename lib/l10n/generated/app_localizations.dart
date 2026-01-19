@@ -113,7 +113,7 @@ abstract class AppLocalizations {
   /// No description provided for @navEvents.
   ///
   /// In en, this message translates to:
-  /// **'Events'**
+  /// **'Calendar'**
   String get navEvents;
 
   /// No description provided for @navDiscipleship.
@@ -131,8 +131,32 @@ abstract class AppLocalizations {
   /// No description provided for @navGiving.
   ///
   /// In en, this message translates to:
-  /// **'Giving'**
+  /// **'Contact'**
   String get navGiving;
+
+  /// No description provided for @pageEventsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Group Calendar'**
+  String get pageEventsTitle;
+
+  /// No description provided for @pageDiscipleshipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Discipleship'**
+  String get pageDiscipleshipTitle;
+
+  /// No description provided for @pagePrayerTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer Requests'**
+  String get pagePrayerTitle;
+
+  /// No description provided for @pageGivingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact'**
+  String get pageGivingTitle;
 }
 
 class _AppLocalizationsDelegate

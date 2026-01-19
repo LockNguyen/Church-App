@@ -1,9 +1,13 @@
 {
   "@@locale": "vi",
   "appTitle": "VBC-WS",
-  "navHome": "Trang Chủ",
-  "navEvents": "Sự Kiện",
+  "navHome": "Home",
+  "navEvents": "Lịch",
   "navDiscipleship": "Môn Đồ Hóa",
   "navPrayer": "Cầu Nguyện",
-  "navGiving": "Dâng Hiến"
+  "navGiving": "Liên Hệ",
+  "pageEventsTitle": "Lịch Nhóm",
+  "pageDiscipleshipTitle": "Môn Đồ Hóa",
+  "pagePrayerTitle": "Cầu Nguyện",
+  "pageGivingTitle": "Liên Hệ"
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../l10n/generated/app_localizations.dart';
 
 class PrayerPage extends StatelessWidget {
   const PrayerPage({super.key});
@@ -6,6 +7,7 @@ class PrayerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -13,7 +15,7 @@ class PrayerPage extends StatelessWidget {
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         title: Text(
-          'Prayer Requests',
+          l10n.pagePrayerTitle,
           style: TextStyle(
             color: colorScheme.onSurface,
             fontSize: 20,
@@ -32,7 +34,7 @@ class PrayerPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Prayer Requests',
+              l10n.pagePrayerTitle,
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
