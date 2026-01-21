@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vbc-ws.app/schemas/discipleship_course.schema.json",
+  "title": "DiscipleshipCourse",
+  "description": "A discipleship course with multiple locations and classes",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the course"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the course"
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Optional description of the course"
+    },
+    "locations": {
+      "type": "array",
+      "description": "List of locations where this course is taught",
+      "items": {
+        "$ref": "#/$defs/DiscipleshipLocation"
+      }
+    }
+  },
+  "required": ["id", "name", "locations"],
+  "$defs": {
+    "DiscipleshipLocation": {
+      "title": "DiscipleshipLocation",
+      "description": "A location where discipleship classes are held",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the location"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the location"
+        },
+        "thumbnailImageUrl": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "URL to the thumbnail image for this location"
+        },
+        "classes": {
+          "type": "array",
+          "description": "List of classes at this location",
+          "items": {
+            "$ref": "#/$defs/DiscipleshipClass"
+          }
+        }
+      },
+      "required": ["id", "name", "classes"]
+    },
+    "DiscipleshipClass": {
+      "title": "DiscipleshipClass",
+      "description": "A single discipleship class session",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the class"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Class start date and time in ISO 8601 format"
+        },
+        "endTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Class end date and time in ISO 8601 format"
+        },
+        "contact": {
+          "type": ["string", "null"],
+          "description": "Contact information (phone or email) for the class"
+        },
+        "passage": {
+          "type": ["string", "null"],
+          "description": "Bible passage or topic for the class"
+        }
+      },
+      "required": ["id", "startTime", "endTime"]
+    }
+  }
+}

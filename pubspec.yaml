@@ -30,12 +30,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   flutter_svg: ^2.0.10+1
   firebase_core: ^3.8.1
   cloud_firestore: ^5.5.0
   firebase_storage: ^12.3.4  # For Firebase Storage
   cached_network_image: ^3.4.1  # For efficient image caching
-  intl: ^0.19.0  # For date formatting
+  intl: ^0.20.2  # For date formatting
   url_launcher: ^6.3.1  # For contact links (phone/email)
 
   # The following adds the Cupertino Icons font to your application.
@@ -58,6 +60,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

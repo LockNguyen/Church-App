@@ -3,6 +3,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../domain/entities/discipleship_class_entity.dart';
 import '../../../domain/entities/discipleship_location_entity.dart';
 import '../../../core/utils/time_formatter.dart';
+import '../../../l10n/generated/app_localizations.dart';
 import '../smart_image.dart';
 
 class DiscipleshipLocationModal extends StatelessWidget {
@@ -16,6 +17,7 @@ class DiscipleshipLocationModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return DraggableScrollableSheet(
       initialChildSize: 0.94,
@@ -90,7 +92,7 @@ class DiscipleshipLocationModal extends StatelessWidget {
 
                       // Classes header
                       Text(
-                        'Các Lớp Học',
+                        l10n.sectionClasses,
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.w700,
@@ -177,6 +179,7 @@ class _ClassCard extends StatelessWidget {
                   TimeFormatter.formatClassTimeRange(
                     classEntity.startTime,
                     classEntity.endTime,
+                    Localizations.localeOf(context).languageCode,
                   ),
                   style: TextStyle(
                     fontSize: 16,
@@ -271,6 +274,8 @@ class _ClassCard extends StatelessWidget {
       uri = Uri.parse('tel:$phone');
     }
 
+    final l10n = AppLocalizations.of(context)!;
+
     try {
       if (await canLaunchUrl(uri)) {
         await launchUrl(uri);
@@ -278,7 +283,7 @@ class _ClassCard extends StatelessWidget {
         if (context.mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('Không thể mở $contact'),
+              content: Text(l10n.errorCannotOpen(contact)),
               backgroundColor: Theme.of(context).colorScheme.error,
             ),
           );
@@ -288,7 +293,7 @@ class _ClassCard extends StatelessWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Lỗi: ${e.toString()}'),
+            content: Text(l10n.errorUnknown(e.toString())),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );

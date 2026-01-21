@@ -4,6 +4,9 @@ import '../../domain/entities/event_entity.dart';
 
 /// Data model that handles Firebase serialization.
 /// Extends EventEntity to avoid duplication.
+///
+/// Schema definition: /schemas/event.schema.json
+/// Generated type: /lib/data/models/generated/event_generated.dart
 class EventModel extends EventEntity {
   const EventModel({
     required super.id,

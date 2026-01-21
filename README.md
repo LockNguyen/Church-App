@@ -120,6 +120,14 @@ flutter run
 
 See [Firebase Setup Guide](docs/firebase-setup.md) for detailed Firestore rules and structure.
 
+## 📋 Schema-Driven Development
+
+Data models are defined in JSON Schema format in `/schemas/`. See [Schema Development Guide](docs/schema-development.md) for:
+- How to define new schemas
+- Running code generators
+- Naming conventions
+- Extending generated models
+
 ## 📈 What's Next?
 
 - [ ] Push notifications for event reminders

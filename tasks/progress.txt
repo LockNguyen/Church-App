@@ -1,0 +1,226 @@
+## Codebase Patterns
+- Flutter localization uses `flutter_localizations` SDK package (already configured in pubspec.yaml)
+- Uses Clean Architecture: domain/entities, data/models, data/repositories, presentation
+- Firebase Firestore for data, Firebase Storage for images
+- l10n: ARB files in lib/l10n/, generated code in lib/l10n/generated/
+- l10n: Run `flutter gen-l10n` after changing ARB files
+- l10n: Import AppLocalizations from 'l10n/generated/app_localizations.dart'
+- l10n: Use `Localizations.localeOf(context).languageCode` for locale-aware formatting
+- Schema: JSON Schema definitions in /schemas/, generated Dart in lib/data/models/generated/
+- Schema: Run `./scripts/generate-models.sh` after schema changes (requires quicktype)
+
+---
+
+## 2026-01-18 - US-001
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Verified `flutter_localizations` and `intl: ^0.20.2` already in pubspec.yaml
+- Fixed unused import warnings in time_formatter.dart and discipleship_repository_impl.dart
+- `flutter pub get` and `flutter analyze` pass successfully
+- Files changed:
+  - lib/core/utils/time_formatter.dart (removed unused intl import)
+  - lib/data/repositories/discipleship_repository_impl.dart (removed unused discipleship_class_entity import)
+- **Learnings for future iterations:**
+  - Dependencies were already configured; focus was on cleanup
+  - intl package version 0.20.2 is newer than PRD specified 0.19.0 - OK
+---
+
+## 2026-01-18 - US-002
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Verified MaterialApp already configured with localization in lib/main.dart
+- localizationsDelegates: GlobalMaterialLocalizations, GlobalWidgetsLocalizations, GlobalCupertinoLocalizations
+- supportedLocales: en, vi
+- localeResolutionCallback defaults to English
+- Flutter analyze passes
+- **Learnings for future iterations:**
+  - main.dart was already configured with localization delegates
+  - No code changes needed - US-002 was pre-implemented
+---
+
+## 2026-01-18 - US-003
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Created lib/l10n/ directory with app_en.arb and app_vi.arb
+- Created l10n.yaml with output-dir: lib/l10n/generated
+- Added generate: true to pubspec.yaml flutter section
+- Ran flutter gen-l10n to generate AppLocalizations class
+- Updated main.dart to import and use AppLocalizations.delegate
+- Files changed:
+  - lib/l10n/app_en.arb (created - nav labels in English)
+  - lib/l10n/app_vi.arb (created - nav labels in Vietnamese)
+  - lib/l10n/generated/*.dart (generated files)
+  - l10n.yaml (created - l10n configuration)
+  - pubspec.yaml (added generate: true)
+  - lib/main.dart (added AppLocalizations.delegate import)
+- **Learnings for future iterations:**
+  - Use output-dir: lib/l10n/generated to persist generated files
+  - Import as 'l10n/generated/app_localizations.dart' (relative import)
+  - synthetic-package option is deprecated in newer Flutter versions
+  - Run `flutter gen-l10n` after changing ARB files
+---
+
+## 2026-01-18 - US-004
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Added all navigation labels to ARB files (navHome, navEvents, navDiscipleship, navPrayer, navGiving)
+- Added page title translations (pageEventsTitle, pageDiscipleshipTitle, pagePrayerTitle, pageGivingTitle)
+- Updated bottom_navbar.dart to use AppLocalizations
+- Updated events_page.dart, discipleship_page.dart, prayer_page.dart, giving_page.dart with localized titles
+- Files changed:
+  - lib/l10n/app_en.arb, lib/l10n/app_vi.arb (added nav + page titles)
+  - lib/presentation/widgets/all_pages/bottom_navbar.dart
+  - lib/presentation/pages/events_page.dart
+  - lib/presentation/pages/discipleship_page.dart
+  - lib/presentation/pages/prayer_page.dart
+  - lib/presentation/pages/giving_page.dart
+- **Learnings for future iterations:**
+  - Pattern: Import AppLocalizations and get `final l10n = AppLocalizations.of(context)!;`
+  - Use l10n.keyName to access localized strings
+---
+
+## 2026-01-18 - US-005
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Added button labels to ARB files (buttonShare, buttonAddToCalendar, buttonCancel, buttonSave, buttonDelete)
+- Updated events_page_bottom_modal.dart to use localized Share and Add to calendar buttons
+- Files changed:
+  - lib/l10n/app_en.arb, lib/l10n/app_vi.arb (added button labels)
+  - lib/presentation/widgets/events_page/events_page_bottom_modal.dart
+- **Learnings for future iterations:**
+  - No confirmation dialogs currently exist in the app
+  - Cancel/Save/Delete buttons are defined for future use
+---
+
+## 2026-01-18 - US-006
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Added section headers (sectionLocation, sectionNotes, sectionClasses)
+- Added empty states (emptyNoEvents, emptyNoCourses, contentComingSoon)
+- Updated events_page_bottom_modal.dart, discipleship_location_bottom_modal.dart
+- Updated events_page.dart, discipleship_page.dart with empty state translations
+- Updated prayer_page.dart, giving_page.dart, sermon_page.dart with contentComingSoon
+- Updated home_page.dart, home_page_app_bar.dart with contentComingSoon
+- Files changed:
+  - lib/l10n/app_en.arb, lib/l10n/app_vi.arb
+  - Multiple presentation files for section headers and empty states
+- **Learnings for future iterations:**
+  - Don't add l10n variable in build() if only used in helper methods
+  - Each helper method should get its own l10n from context
+---
+
+## 2026-01-18 - US-007
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Added error messages (errorGeneric, errorTryAgain, errorNoInternet)
+- Added parameterized error messages (errorCannotOpen, errorUnknown with placeholders)
+- Updated events_page.dart, discipleship_page.dart error states
+- Updated discipleship_location_bottom_modal.dart snackbar error messages
+- Files changed:
+  - lib/l10n/app_en.arb, lib/l10n/app_vi.arb
+  - lib/presentation/pages/events_page.dart
+  - lib/presentation/pages/discipleship_page.dart
+  - lib/presentation/widgets/discipleship_page/discipleship_location_bottom_modal.dart
+- **Learnings for future iterations:**
+  - ARB files support parameterized messages with @key metadata and placeholders
+  - Use l10n.errorCannotOpen(contact) for parameterized messages
+---
+
+## 2026-01-18 - US-008
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Updated TimeFormatter to accept locale parameter
+- Added getDayOfWeek() with locale-aware formatting (Vietnamese: T2-CN, English: Mon-Sun)
+- Added formatDate() and formatShortDate() using DateFormat with locale
+- Updated formatClassTimeRange() to accept localeCode parameter
+- Updated discipleship_location_bottom_modal.dart to pass Localizations.localeOf(context).languageCode
+- Files changed:
+  - lib/core/utils/time_formatter.dart (refactored to locale-aware)
+  - lib/presentation/widgets/discipleship_page/discipleship_location_bottom_modal.dart
+- **Learnings for future iterations:**
+  - Use Localizations.localeOf(context).languageCode to get current locale
+  - DateFormat.E(locale).format() for day names, DateFormat.yMMMMd(locale) for dates
+  - Vietnamese custom day abbreviations (T2-T7, CN) need special handling
+---
+
+## 2026-01-18 - US-009
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Created /schemas directory at project root
+- Created README.md explaining schema structure, conventions, and usage
+- Files changed:
+  - schemas/ (new directory)
+  - schemas/README.md (created)
+- **Learnings for future iterations:**
+  - Schema files live in /schemas at project root
+  - Follow JSON Schema Draft 2020-12 specification
+---
+
+## 2026-01-18 - US-010
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Created schemas/event.schema.json following JSON Schema Draft 2020-12
+- Schema includes all Event fields: id, title, subtitle, dateDisplay, heroImageUrl, thumbnailImageUrl, location, notes, startDateTime, endDateTime, isActive, createdAt, updatedAt, order
+- Defined required fields: id, title, isActive, createdAt, updatedAt, order
+- Used type arrays for nullable fields (e.g., ["string", "null"])
+- Files changed:
+  - schemas/event.schema.json (created)
+- **Learnings for future iterations:**
+  - Use ["string", "null"] for optional/nullable fields in JSON Schema
+  - Use format: "date-time" for ISO 8601 datetime fields
+  - Match required fields with Dart entity's required constructor params
+---
+
+## 2026-01-18 - US-011
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Created schemas/discipleship_course.schema.json with nested types
+- Includes Course (id, name, description, locations)
+- Nested DiscipleshipLocation in $defs (id, name, thumbnailImageUrl, classes)
+- Nested DiscipleshipClass in $defs (id, startTime, endTime, contact, passage)
+- Used $ref for nested type references
+- Files changed:
+  - schemas/discipleship_course.schema.json (created)
+- **Learnings for future iterations:**
+  - Use $defs for nested type definitions in JSON Schema
+  - Reference with $ref: "#/$defs/TypeName"
+  - Nested types can reference other nested types
+---
+
+## 2026-01-18 - US-012
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Created scripts/generate-models.sh using quicktype for Dart generation
+- Script is executable (chmod +x applied)
+- Created docs/schema-development.md with comprehensive documentation
+- Updated README.md with Schema-Driven Development section
+- Files changed:
+  - scripts/generate-models.sh (created, executable)
+  - docs/schema-development.md (created)
+  - README.md (added schema section)
+- **Learnings for future iterations:**
+  - quicktype requires: npm install -g quicktype
+  - Use --null-safety and --coders-in-class flags for Dart generation
+  - Generated files go to lib/data/models/generated/
+---
+
+## 2026-01-18 - US-013
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Ran generate-models.sh to create Dart models from schemas
+- Generated event_generated.dart with Event class, fromJson(), toJson()
+- Generated discipleship_course_generated.dart with nested types
+- All generated classes have null-safe types based on schema required fields
+- Flutter analyze passes on generated code
+- Files changed:
+  - lib/data/models/generated/event_generated.dart (generated)
+  - lib/data/models/generated/discipleship_course_generated.dart (generated)
+- **Learnings for future iterations:**
+  - quicktype generates fromRawJson/toRawJson in addition to fromJson/toJson
+  - Generated classes use fields (not final) - may need to add immutability
+  - DateTime fields are properly typed from format: date-time schema
+---
+
+## 2026-01-18 - US-014
+Thread: https://ampcode.com/threads/T-019bd40b-41ed-7153-887d-ed02a3142b0a
+- Verified generated models are compatible with existing entity/model structure
+- Added schema documentation comments to event_model.dart and discipleship_course_model.dart
+- Architecture preserved: Entity (domain) → Model (Firestore) → Generated (JSON API)
+- Existing Firestore serialization still works correctly
+- Flutter analyze passes
+- Files changed:
+  - lib/data/models/event_model.dart (added schema reference comments)
+  - lib/data/models/discipleship_course_model.dart (added schema reference comments)
+- **Learnings for future iterations:**
+  - Keep generated files as-is (they get overwritten)
+  - Use existing models for Firestore-specific logic
+  - Generated models useful for JSON API exports
+  - Document schema references in model files
+---

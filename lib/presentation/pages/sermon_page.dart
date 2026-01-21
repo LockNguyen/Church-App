@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../l10n/generated/app_localizations.dart';
 
 class SermonPage extends StatelessWidget {
   const SermonPage({super.key});
@@ -6,6 +7,7 @@ class SermonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
@@ -41,7 +43,7 @@ class SermonPage extends StatelessWidget {
             ),
             SizedBox(height: 12),
             Text(
-              'Content coming soon',
+              l10n.contentComingSoon,
               style: TextStyle(
                 fontSize: 18,
                 color: colorScheme.onSurfaceVariant,

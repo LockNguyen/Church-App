@@ -1,0 +1,43 @@
+{
+  "@@locale": "vi",
+  "appTitle": "VBC-WS",
+  "navHome": "Trang Chủ",
+  "navEvents": "Lịch",
+  "navDiscipleship": "Môn Đồ Hóa",
+  "navPrayer": "Cầu Nguyện",
+  "navGiving": "Liên Hệ",
+  "pageEventsTitle": "Lịch Nhóm",
+  "pageDiscipleshipTitle": "Môn Đồ Hóa",
+  "pagePrayerTitle": "Cầu Nguyện",
+  "pageGivingTitle": "Liên Hệ",
+  "buttonShare": "Chia Sẻ",
+  "buttonAddToCalendar": "Thêm vào Lịch",
+  "buttonCancel": "Hủy",
+  "buttonSave": "Lưu",
+  "buttonDelete": "Xóa",
+  "sectionLocation": "Địa Điểm",
+  "sectionNotes": "Ghi Chú",
+  "sectionClasses": "Các Lớp Học",
+  "emptyNoEvents": "Chưa có sự kiện nào",
+  "emptyNoCourses": "Chưa có khóa học nào",
+  "contentComingSoon": "Nội dung sắp có",
+  "errorGeneric": "Đã xảy ra lỗi",
+  "errorTryAgain": "Vui lòng thử lại",
+  "errorNoInternet": "Không thể tải dữ liệu. Vui lòng kiểm tra kết nối mạng.",
+  "errorCannotOpen": "Không thể mở {contact}",
+  "@errorCannotOpen": {
+    "placeholders": {
+      "contact": {
+        "type": "String"
+      }
+    }
+  },
+  "errorUnknown": "Lỗi: {message}",
+  "@errorUnknown": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  }
+}

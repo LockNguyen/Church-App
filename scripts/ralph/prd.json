@@ -1,0 +1,218 @@
+{
+    "project": "ChurchApp",
+    "branchName": "ralph/i18n-and-schema",
+    "description": "Church App Enhancements - Flutter Internationalization (i18n) and Schema-Driven Development",
+    "userStories": [
+        {
+            "id": "US-001",
+            "title": "Add Flutter Localization Dependencies",
+            "description": "As a developer, I need to add the required localization packages so the app can support multiple languages.",
+            "acceptanceCriteria": [
+                "Add flutter_localizations to pubspec.yaml dependencies (sdk: flutter)",
+                "Verify intl: ^0.19.0 is present (it is)",
+                "Run flutter pub get successfully",
+                "flutter analyze passes with no errors"
+            ],
+            "priority": 1,
+            "passes": true,
+            "notes": "intl upgraded to ^0.20.2 for compatibility with flutter_localizations"
+        },
+        {
+            "id": "US-002",
+            "title": "Configure Flutter Localization in MaterialApp",
+            "description": "As a developer, I need to configure the MaterialApp to support localization delegates and supported locales.",
+            "acceptanceCriteria": [
+                "Update lib/main.dart to add localizationsDelegates",
+                "Add supportedLocales for English (en) and Vietnamese (vi)",
+                "Configure localeResolutionCallback to default to English if locale not supported",
+                "App builds and runs without errors",
+                "flutter analyze passes"
+            ],
+            "priority": 2,
+            "passes": true,
+            "notes": "Added GlobalMaterialLocalizations, GlobalWidgetsLocalizations, GlobalCupertinoLocalizations delegates"
+        },
+        {
+            "id": "US-003",
+            "title": "Create ARB File Structure and Generate Localization Classes",
+            "description": "As a developer, I need to set up the ARB translation files and configure code generation for localized strings.",
+            "acceptanceCriteria": [
+                "Create lib/l10n/ directory",
+                "Create app_en.arb with initial translatable strings (app title, navigation labels)",
+                "Create app_vi.arb with Vietnamese translations",
+                "Add generate: true and l10n configuration to pubspec.yaml",
+                "Create l10n.yaml configuration file",
+                "Run flutter gen-l10n successfully",
+                "flutter analyze passes"
+            ],
+            "priority": 3,
+            "passes": false,
+            "notes": ""
+        },
+        {
+            "id": "US-004",
+            "title": "Translate Navigation and AppBar Labels",
+            "description": "As a user, I want navigation labels and AppBar titles to display in my device's language.",
+            "acceptanceCriteria": [
+                "Add all navigation labels to ARB files (Home, Events, Discipleship, Prayer, Giving)",
+                "Add Vietnamese translations (Trang Chủ, Sự Kiện, Môn Đồ Hóa, Cầu Nguyện, Dâng Hiến)",
+                "Update bottom_nav_bar.dart to use AppLocalizations.of(context)!",
+                "Update page AppBar titles to use localized strings",
+                "flutter analyze passes"
+            ],
+            "priority": 4,
+            "passes": false,
+            "notes": ""
+        },
+        {
+            "id": "US-005",
+            "title": "Translate Button and Action Labels",
+            "description": "As a user, I want button text and action labels to display in my device's language.",
+            "acceptanceCriteria": [
+                "Add button labels to ARB files (Share, Add to Calendar, Cancel, Save, Delete)",
+                "Add Vietnamese translations (Chia Sẻ, Thêm vào Lịch, Hủy, Lưu, Xóa)",
+                "Update event detail buttons to use localized strings",
+                "Update any confirmation dialogs to use localized strings",
+                "flutter analyze passes"
+            ],
+            "priority": 5,
+            "passes": false,
+            "notes": ""
+        },
+        {
+            "id": "US-006",
+            "title": "Translate Section Headers and Empty States",
+            "description": "As a user, I want section headers and empty state messages to display in my device's language.",
+            "acceptanceCriteria": [
+                "Add section headers to ARB files (Classes, Location, Upcoming Events)",
+                "Add Vietnamese translations (Các Lớp Học, Địa Điểm, Sự Kiện Sắp Tới)",
+                "Add empty state messages (No events yet, No classes available)",
+                "Add Vietnamese empty states (Chưa có sự kiện nào, Chưa có lớp học)",
+                "Update relevant widgets to use localized strings",
+                "flutter analyze passes"
+            ],
+            "priority": 6,
+            "passes": false,
+            "notes": ""
+        },
+        {
+            "id": "US-007",
+            "title": "Translate Error Messages",
+            "description": "As a user, I want error messages to display in my device's language so I understand what went wrong.",
+            "acceptanceCriteria": [
+                "Add common error messages to ARB files (An error occurred, Please try again, No internet connection)",
+                "Add Vietnamese translations (Đã xảy ra lỗi, Vui lòng thử lại, Không có kết nối internet)",
+                "Update error handling widgets/snackbars to use localized strings",
+                "flutter analyze passes"
+            ],
+            "priority": 7,
+            "passes": false,
+            "notes": ""
+        },
+        {
+            "id": "US-008",
+            "title": "Add Date/Time Locale Formatting",
+            "description": "As a user, I want dates and times to display in my locale's format.",
+            "acceptanceCriteria": [
+                "Use DateFormat from intl package with locale parameter",
+                "Update event date displays to use Localizations.localeOf(context)",
+                "Vietnamese dates show Vietnamese day names (Thứ 2, Thứ 3, etc.)",
+                "English dates show English format (Mon, Tue, etc.)",
+                "flutter analyze passes"
+            ],
+            "priority": 8,
+            "passes": false,
+            "notes": ""
+        },
+        {
+            "id": "US-009",
+            "title": "Create Schemas Directory Structure",
+            "description": "As a developer, I need a dedicated directory for JSON schema definitions.",
+            "acceptanceCriteria": [
+                "Create /schemas directory at project root",
+                "Create README.md in schemas/ explaining the schema structure and usage",
+                "flutter analyze passes (no impact on Flutter code)"
+            ],
+            "priority": 9,
+            "passes": false,
+            "notes": ""
+        },
+        {
+            "id": "US-010",
+            "title": "Define Event JSON Schema",
+            "description": "As a developer, I need a JSON Schema definition for the Event model to serve as the single source of truth.",
+            "acceptanceCriteria": [
+                "Create schemas/event.schema.json",
+                "Schema follows JSON Schema Draft 2020-12 specification",
+                "Schema includes all Event fields: id, name, date, location, description, imageUrl",
+                "Schema defines required vs optional fields",
+                "Schema includes field types and validation rules"
+            ],
+            "priority": 10,
+            "passes": false,
+            "notes": "Review existing lib/data/models/event.dart for field reference"
+        },
+        {
+            "id": "US-011",
+            "title": "Define Discipleship Course JSON Schemas",
+            "description": "As a developer, I need JSON Schema definitions for Discipleship-related models (Course, Location, Class).",
+            "acceptanceCriteria": [
+                "Create schemas/discipleship_course.schema.json",
+                "Schema includes Course model fields (id, name, isActive, etc.)",
+                "Schema includes nested Location type",
+                "Schema includes nested Class type (classNumber, passage, date, notes)",
+                "Schema defines required vs optional fields"
+            ],
+            "priority": 11,
+            "passes": false,
+            "notes": "Review existing lib/data/models/discipleship_data.dart for field reference"
+        },
+        {
+            "id": "US-012",
+            "title": "Add Code Generation Scripts and Documentation",
+            "description": "As a developer, I need scripts to generate Dart code from schemas and documentation on how to use them.",
+            "acceptanceCriteria": [
+                "Create scripts/generate-models.sh script",
+                "Script uses quicktype to generate Dart from JSON Schema",
+                "Create docs/schema-development.md with usage instructions",
+                "Update project README to reference schema documentation",
+                "Shell script is executable (chmod +x)"
+            ],
+            "priority": 12,
+            "passes": false,
+            "notes": "quicktype can be installed via npm: npm install -g quicktype"
+        },
+        {
+            "id": "US-013",
+            "title": "Generate Base Dart Models from Schemas",
+            "description": "As a developer, I want Dart model classes generated from JSON schemas so I don't maintain them manually.",
+            "acceptanceCriteria": [
+                "Create lib/data/models/generated/ directory",
+                "Running generate script creates event_generated.dart",
+                "Running generate script creates discipleship_course_generated.dart",
+                "Generated classes include fromJson() and toJson() methods",
+                "Generated classes have null-safe types based on schema required fields",
+                "flutter analyze passes on generated code"
+            ],
+            "priority": 13,
+            "passes": false,
+            "notes": ""
+        },
+        {
+            "id": "US-014",
+            "title": "Integrate Generated Models with Existing Code",
+            "description": "As a developer, I want existing model classes to extend or use the generated base classes.",
+            "acceptanceCriteria": [
+                "Update lib/data/models/event.dart to use generated base or verify compatibility",
+                "Update lib/data/models/discipleship_data.dart to use generated types",
+                "Ensure Firestore serialization still works correctly",
+                "All existing functionality continues to work",
+                "flutter analyze passes",
+                "App builds and runs successfully"
+            ],
+            "priority": 14,
+            "passes": false,
+            "notes": ""
+        }
+    ]
+}

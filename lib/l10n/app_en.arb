@@ -1,0 +1,43 @@
+{
+  "@@locale": "en",
+  "appTitle": "VBC-WS",
+  "navHome": "Home",
+  "navEvents": "Calendar",
+  "navDiscipleship": "Discipleship",
+  "navPrayer": "Prayer",
+  "navGiving": "Contact",
+  "pageEventsTitle": "Group Calendar",
+  "pageDiscipleshipTitle": "Discipleship",
+  "pagePrayerTitle": "Prayer Requests",
+  "pageGivingTitle": "Contact",
+  "buttonShare": "Share",
+  "buttonAddToCalendar": "Add to calendar",
+  "buttonCancel": "Cancel",
+  "buttonSave": "Save",
+  "buttonDelete": "Delete",
+  "sectionLocation": "Location",
+  "sectionNotes": "Notes",
+  "sectionClasses": "Classes",
+  "emptyNoEvents": "No events yet",
+  "emptyNoCourses": "No courses available",
+  "contentComingSoon": "Content coming soon",
+  "errorGeneric": "An error occurred",
+  "errorTryAgain": "Please try again",
+  "errorNoInternet": "Unable to load data. Please check your network connection.",
+  "errorCannotOpen": "Cannot open {contact}",
+  "@errorCannotOpen": {
+    "placeholders": {
+      "contact": {
+        "type": "String"
+      }
+    }
+  },
+  "errorUnknown": "Error: {message}",
+  "@errorUnknown": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  }
+}

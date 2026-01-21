@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://vbc-ws.app/schemas/event.schema.json",
+  "title": "Event",
+  "description": "A calendar event for the VBC-WS church app",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the event"
+    },
+    "title": {
+      "type": "string",
+      "description": "Display title of the event"
+    },
+    "subtitle": {
+      "type": ["string", "null"],
+      "description": "Optional subtitle or tagline for the event"
+    },
+    "dateDisplay": {
+      "type": ["string", "null"],
+      "description": "Human-readable date/time string for display"
+    },
+    "heroImageUrl": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL to the hero/banner image (Firebase Storage or asset path)"
+    },
+    "thumbnailImageUrl": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL to the thumbnail image (Firebase Storage or asset path)"
+    },
+    "location": {
+      "type": ["string", "null"],
+      "description": "Event location/venue"
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Additional notes or description for the event"
+    },
+    "startDateTime": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Event start date and time in ISO 8601 format"
+    },
+    "endDateTime": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Event end date and time in ISO 8601 format"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the event is currently active/visible"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the event was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the event was last updated"
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "description": "Display order for sorting events"
+    }
+  },
+  "required": ["id", "title", "isActive", "createdAt", "updatedAt", "order"]
+}

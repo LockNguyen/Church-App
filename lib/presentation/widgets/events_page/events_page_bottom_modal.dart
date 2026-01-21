@@ -1,6 +1,7 @@
 import 'package:church_app/presentation/widgets/smart_image.dart';
 import 'package:flutter/material.dart';
 import '../../../domain/entities/event_entity.dart';
+import '../../../l10n/generated/app_localizations.dart';
 
 class EventDetailBottomSheet extends StatelessWidget {
   final EventEntity event;
@@ -13,6 +14,7 @@ class EventDetailBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
+    final l10n = AppLocalizations.of(context)!;
 
     return DraggableScrollableSheet(
       initialChildSize: 0.94,
@@ -126,12 +128,12 @@ class EventDetailBottomSheet extends StatelessWidget {
                         children: [
                           _ActionCircleButton(
                             icon: Icons.ios_share,
-                            label: 'Share',
+                            label: l10n.buttonShare,
                             onTap: () {},
                           ),
                           _ActionCircleButton(
                             icon: Icons.event_available,
-                            label: 'Add to calendar',
+                            label: l10n.buttonAddToCalendar,
                             onTap: () {},
                           ),
                         ],
@@ -141,7 +143,7 @@ class EventDetailBottomSheet extends StatelessWidget {
 
                       if (event.location != null) ...[
                         Text(
-                          'Location',
+                          l10n.sectionLocation,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
@@ -161,7 +163,7 @@ class EventDetailBottomSheet extends StatelessWidget {
 
                       if (event.notes != null) ...[
                         Text(
-                          'Notes',
+                          l10n.sectionNotes,
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
