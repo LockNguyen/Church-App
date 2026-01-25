@@ -32,28 +32,28 @@ class HomePage extends StatelessWidget {
                 children: [
                   NavigationCard(
                     title: l10n.pageEventsTitle,
-                    image: 'images/calendar.jpg',
+                    image: 'assets/images/calendar.jpg',
                     accentColor: colorScheme.primary,
                     onTap: () => onNavigate(1),
                   ),
                   SizedBox(height: 24),
                   NavigationCard(
                     title: l10n.pageDiscipleshipTitle,
-                    image: 'images/preaching.jpg',
+                    image: 'assets/images/preaching.jpg',
                     accentColor: colorScheme.secondary,
                     onTap: () => onNavigate(2),
                   ),
                   SizedBox(height: 24),
                   NavigationCard(
                     title: l10n.pagePrayerTitle,
-                    image: 'images/praying.jpg',
+                    image: 'assets/images/praying.jpg',
                     accentColor: colorScheme.tertiary,
                     onTap: () => onNavigate(3),
                   ),
                   SizedBox(height: 24),
                   NavigationCard(
                     title: l10n.pageGivingTitle,
-                    image: 'images/giving.jpg',
+                    image: 'assets/images/giving.jpg',
                     accentColor: colorScheme.primaryContainer,
                     onTap: () => onNavigate(4),
                   ),
