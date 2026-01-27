@@ -17,9 +17,11 @@ class HomePage extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final l10n = AppLocalizations.of(context)!;
 
-    return Container(
-      color: colorScheme.surface, // This is the Scaffold's default background.
-      child: SingleChildScrollView(
+    return SafeArea(
+      bottom: false, // Bottom is handled by the Scaffold's bottomNavigationBar
+      child: Container(
+        color: colorScheme.surface, // This is the Scaffold's default background.
+        child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -62,6 +64,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ],
+        ),
         ),
       ),
     );
