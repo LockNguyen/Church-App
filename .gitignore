@@ -46,3 +46,12 @@ app.*.map.json
 
 # My test files
 **/t.dart
+# Build artifacts
+android/build/
+
+# Signing certificates (sensitive)
+*.certSigningRequest
+ios/ExportOptions.plist
+
+# Generated models (if regenerated from schema)
+# lib/data/models/generated/
